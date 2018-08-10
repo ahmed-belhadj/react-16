@@ -1,8 +1,20 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+
+import UserInput from "./components/UserInput/UserInput";
+import UserOutput from "./components/UserOutput/UserOutput";
+
+import logo from "./logo.svg";
+import "./App.css";
 
 class App extends Component {
+  state = {
+    username: "Matilde"
+  };
+
+  handleChange = event => {
+    this.setState({ username: event.target.value });
+  };
+
   render() {
     return (
       <div className="App">
@@ -10,9 +22,10 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+
+        <UserInput value={this.state.username} onChange={this.handleChange} />
+        <UserOutput username={this.state.username} />
+        <UserOutput username="Reyna" />
       </div>
     );
   }
